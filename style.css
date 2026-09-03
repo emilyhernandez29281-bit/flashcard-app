@@ -2677,3 +2677,627 @@ text-align:center;
     }
 }
 
+/* Mobile layout -----------------------------------------------------------
+   Desktop keeps all rules above unchanged. These overrides give phones a
+   portrait layout, safe-area spacing, larger controls, and scrollable views. */
+@media (max-width: 700px) {
+    html {
+        min-height:100%;
+        background:#F7E4AA;
+    }
+
+    body {
+        display:grid;
+        width:100%;
+        min-height:100svh;
+        overflow-x:hidden;
+        overflow-y:auto;
+        overscroll-behavior:none;
+        -webkit-text-size-adjust:100%;
+    }
+
+    body.alt-bg {
+        background-size:auto 100%;
+        background-position:center;
+        background-attachment:fixed;
+    }
+
+    .flashcards {
+        width:100%;
+        height:100svh;
+        min-height:600px;
+        overflow:hidden;
+    }
+
+    /* Keep the illustrated board, but size it from the phone width. */
+    #mainBoard {
+        width:min(900px, 170vw);
+    }
+
+    #leafOnRedBoard {
+        top:calc(50% - 14vw);
+        left:50%;
+        width:min(145px, 37vw);
+        transform:translateX(-50%);
+    }
+
+    /* Opening screen */
+    #dogphoto {
+        width:min(100vw, 500px);
+        height:min(100vw, 500px);
+    }
+
+    #dogphoto .dog-head {
+        width:66%;
+        left:18%;
+        top:-1%;
+    }
+
+    #dogphoto .dog-legs {
+        width:46%;
+        left:28%;
+        top:84%;
+    }
+
+    #startButton {
+        position:absolute;
+        top:auto;
+        right:50%;
+        bottom:max(28px, env(safe-area-inset-bottom));
+        transform:translateX(50%);
+        min-width:150px;
+        min-height:64px;
+        padding:0;
+    }
+
+    #startButton img {
+        width:min(230px, 58vw);
+    }
+
+    .start-text {
+        left:41%;
+        font-size:clamp(18px, 5vw, 22px);
+    }
+
+    /* Main Create / Practice / Collect menu */
+    #seperateoptions {
+        top:47%;
+        left:50%;
+        width:min(88vw, 390px);
+        align-items:center;
+        justify-content:space-around;
+        gap:4px;
+        transform:translate(-50%, -50%);
+    }
+
+    #seperateoptions > button {
+        display:grid;
+        width:88px;
+        min-height:88px;
+        padding:6px;
+        place-items:center;
+    }
+
+    #ketchup {
+        width:82px;
+    }
+
+    #tomato {
+        width:58px;
+    }
+
+    #sandwich {
+        width:76px;
+    }
+
+    #optionlabels {
+        top:92%;
+        left:0;
+        display:grid;
+        grid-template-columns:repeat(3, 1fr);
+        width:100%;
+        gap:0;
+        font-size:13px;
+        text-align:center;
+    }
+
+    #optionlabels h3 {
+        margin:8px 0 0;
+    }
+
+    /* Navigation remains reachable above notches and browser toolbars. */
+    #backbutton0,
+    #backbutton1,
+    #backbutton2,
+    #backbutton3,
+    #backbutton4,
+    #backbutton5 {
+        position:fixed;
+        top:max(12px, env(safe-area-inset-top));
+        right:auto;
+        bottom:auto;
+        left:12px;
+        z-index:100;
+        width:48px;
+        min-height:48px;
+    }
+
+    #backbutton0 img,
+    #backbutton1 img,
+    #backbutton2 img,
+    #backbutton3 img,
+    #backbutton4 img,
+    #backbutton5 img {
+        width:44px;
+    }
+
+    /* Language and set selection */
+    #langscreen,
+    #setsScreen {
+        top:50%;
+        left:50%;
+        width:min(88vw, 380px);
+        min-height:280px;
+        max-height:min(62svh, 460px);
+        margin:0;
+        padding:16px 10px 12px;
+        box-sizing:border-box;
+        border:3px dashed rgba(240, 170, 137, 0.85);
+        border-radius:14px;
+        background:rgba(247, 228, 170, 0.94);
+        box-shadow:0 7px 0 rgba(169, 74, 74, 0.24);
+        transform:translate(-50%, -50%);
+    }
+
+    #langoptions,
+    #setsContainer {
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        width:100%;
+        max-height:none;
+        padding:4px;
+        gap:12px;
+        box-sizing:border-box;
+    }
+
+    .lang-btn,
+    .set-btn {
+        width:100%;
+        min-width:0;
+        max-width:none;
+        min-height:48px;
+        font-size:15px;
+    }
+
+    .set-btn {
+        min-height:64px;
+    }
+
+    .lang-bottom-bar,
+    .set-bottom-bar {
+        width:100%;
+        margin-top:10px;
+        justify-content:center;
+        gap:10px;
+    }
+
+    #deletelangbtn,
+    #addlangbtn,
+    #addSetBtn,
+    #deleteSetBtn {
+        flex:1 1 0;
+        min-width:0;
+        min-height:44px;
+        margin:0;
+        font-size:13px;
+    }
+
+    /* Create-card screen */
+    #userInputscreen {
+        position:fixed;
+        top:50%;
+        left:50%;
+        width:min(88vw, 390px);
+        max-width:none;
+        height:auto;
+        min-height:330px;
+        padding:48px 16px 18px;
+        box-sizing:border-box;
+        border:3px dashed rgba(240, 170, 137, 0.9);
+        border-radius:16px;
+        background:rgba(247, 228, 170, 0.96);
+        box-shadow:0 7px 0 rgba(169, 74, 74, 0.24);
+        transform:translate(-50%, -50%);
+    }
+
+    #cardForm,
+    #cardForm.all-card-fields-visible,
+    #cardForm.basic-card-fields-only {
+        width:100%;
+        max-width:none;
+        gap:10px;
+        transform:none;
+    }
+
+    #cardForm h2 {
+        font-size:clamp(21px, 6vw, 26px);
+        transform:none;
+    }
+
+    #cardForm input {
+        width:100%;
+        min-height:46px;
+        padding:8px 10px;
+        font-size:16px;
+    }
+
+    #cardForm.all-card-fields-visible #cardPronunciation,
+    #cardForm.all-card-fields-visible .category-buttons {
+        margin-top:0;
+    }
+
+    .category-buttons {
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:8px;
+    }
+
+    .category-btn {
+        min-height:44px;
+        padding:8px 5px;
+        font-size:13px;
+    }
+
+    .category-btn:last-child {
+        grid-column:1 / -1;
+    }
+
+    .card-settings-button {
+        top:10px;
+        left:12px;
+        display:grid;
+        width:44px;
+        height:44px;
+        place-items:center;
+    }
+
+    .card-settings-button img {
+        width:34px;
+    }
+
+    .card-settings-panel {
+        top:56px;
+        right:12px;
+        left:12px;
+        width:auto;
+    }
+
+    .card-settings-panel label {
+        min-height:36px;
+        font-size:14px;
+    }
+
+    .form-message-area p,
+    #cardForm.category-field-visible #successMessage:not(.success-message-hidden),
+    #cardForm.category-field-visible #errorMessage:not(.error-message-hidden) {
+        left:50%;
+        max-width:100%;
+        font-size:14px;
+        transform:translateX(-50%);
+    }
+
+    /* Practice screen */
+    #scrollcards {
+        position:fixed;
+        top:50%;
+        left:50%;
+        width:min(76vw, 310px);
+        height:190px;
+        transform:translate(-50%, -50%);
+    }
+
+    .current-scroll-card {
+        margin:12px 0;
+    }
+
+    .current-scroll-card .word,
+    .current-scroll-card #hiddef {
+        width:100%;
+        font-size:clamp(18px, 5vw, 24px);
+    }
+
+    .current-scroll-card .reveal-btn {
+        min-width:110px;
+        min-height:60px;
+    }
+
+    .current-scroll-card .reveal-btn img,
+    .current-scroll-card .nextcard-btn img,
+    .current-scroll-card .previouscard-btn img {
+        width:76px;
+    }
+
+    .nextcard-btn {
+        right:-34px;
+        top:30%;
+        min-width:58px;
+        min-height:58px;
+        padding:0;
+    }
+
+    .previouscard-btn {
+        left:-34px;
+        top:30%;
+        min-width:58px;
+        min-height:58px;
+        padding:0;
+    }
+
+    .settings-btn,
+    .mastered-btn {
+        display:grid;
+        width:44px;
+        min-height:44px;
+        place-items:center;
+    }
+
+    .settings-btn {
+        top:-34px;
+        left:-12px;
+    }
+
+    .mastered-btn {
+        top:-34px;
+        right:-12px;
+    }
+
+    .practice-settings-panel {
+        top:16px;
+        left:50%;
+        width:min(82vw, 290px);
+        transform:translateX(-50%);
+    }
+
+    #ketchupMeterContainer {
+        position:fixed;
+        right:18px;
+        bottom:max(28px, env(safe-area-inset-bottom));
+        left:18px;
+        transform:none;
+    }
+
+    #tomatoMeter {
+        width:100%;
+        height:16px;
+        box-sizing:border-box;
+    }
+
+    /* Completion message becomes a readable phone-sized dialog. */
+    .goal-achievement {
+        position:fixed;
+        top:50%;
+        left:50%;
+        width:min(92vw, 410px);
+        min-height:390px;
+        padding:18px;
+        box-sizing:border-box;
+        border:4px dashed #F7E4AA;
+        border-radius:18px;
+        background:#C95E54;
+        box-shadow:0 10px 30px rgba(77, 42, 39, 0.35);
+        transform:translate(-50%, -50%);
+    }
+
+    .goal-achievement-content {
+        display:flex;
+        width:100%;
+        height:100%;
+        flex-direction:column;
+        justify-content:space-between;
+        gap:8px;
+    }
+
+    .goal-achievement-left {
+        position:static;
+        width:100%;
+        transform:none;
+    }
+
+    .goal-achievement-content h2 {
+        font-size:clamp(19px, 5.5vw, 25px);
+        white-space:normal;
+    }
+
+    .goal-achievement-gif-frame {
+        width:220px;
+        height:220px;
+    }
+
+    #goalAchievement #achievementGif {
+        top:50%;
+        width:100%;
+    }
+
+    .goal-achievement-actions {
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        width:100%;
+        gap:10px;
+    }
+
+    .goal-achievement-actions button,
+    #returnToOptionsBtn,
+    #keepPracticingBtn {
+        position:static;
+        width:100%;
+        min-height:48px;
+        padding:8px;
+        font-size:13px;
+        transform:none;
+    }
+
+    /* Collection screen */
+    #dash-bar {
+        top:max(10px, env(safe-area-inset-top));
+        right:10px;
+        left:68px;
+        width:auto;
+        max-width:none;
+        min-height:48px;
+        flex-wrap:wrap;
+        gap:7px;
+        transform:none;
+    }
+
+    .search-bar {
+        flex:1 1 130px;
+        width:auto;
+        min-height:42px;
+        box-sizing:border-box;
+        font-size:16px;
+    }
+
+    #masterFilter {
+        min-height:42px;
+        font-size:14px;
+    }
+
+    .view-toggle-btn,
+    .delete-selected-btn {
+        min-height:40px;
+        padding:6px 9px;
+        font-size:13px;
+    }
+
+    #notesContainer,
+    #notesContainer.table-view,
+    #notesContainer.calendar-view {
+        position:fixed;
+        top:104px;
+        right:8px;
+        bottom:max(10px, env(safe-area-inset-bottom));
+        left:8px;
+        width:auto;
+        height:auto;
+        max-height:none;
+        margin:0;
+        padding:6px;
+        gap:18px 8px;
+        transform:none;
+    }
+
+    #notesContainer {
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+
+    #notesContainer.table-view {
+        overflow:auto;
+    }
+
+    #notesContainer.calendar-view {
+        padding:6px;
+        overflow:auto;
+    }
+
+    .note-card-details {
+        min-width:0;
+        min-height:165px;
+    }
+
+    .collection-table-toolbar {
+        position:sticky;
+        left:0;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .collection-table-wrap {
+        height:calc(100% - 86px);
+        max-height:none;
+    }
+
+    .collection-calendar-title {
+        font-size:16px;
+    }
+
+    .collection-month-grid {
+        grid-template-columns:repeat(3, 72px);
+        gap:13px 18px;
+    }
+
+    .collection-month-btn {
+        width:72px;
+        height:72px;
+    }
+
+    .collection-calendar-art {
+        width:min(94vw, 390px);
+    }
+
+    #tomatcan {
+        position:fixed;
+        top:auto;
+        right:10px;
+        bottom:max(12px, env(safe-area-inset-bottom));
+        left:auto;
+    }
+
+    #tomatcan img {
+        width:72px;
+    }
+
+    #deletePopup {
+        position:fixed;
+    }
+
+    .popup-card {
+        width:min(220px, 62vw);
+    }
+}
+
+/* Short landscape phones need a denser vertical arrangement. */
+@media (max-width: 700px) and (max-height: 500px) and (orientation: landscape) {
+    .flashcards {
+        min-height:100svh;
+    }
+
+    #mainBoard {
+        width:min(900px, 105vw);
+    }
+
+    #startButton {
+        right:8%;
+        bottom:12px;
+        transform:none;
+    }
+
+    #startButton img {
+        width:180px;
+    }
+
+    #langscreen,
+    #setsScreen,
+    #userInputscreen {
+        max-height:88svh;
+        overflow:auto;
+    }
+
+    #userInputscreen {
+        width:min(76vw, 520px);
+        min-height:0;
+        padding-top:42px;
+    }
+
+    .category-buttons {
+        grid-template-columns:repeat(5, minmax(0, 1fr));
+    }
+
+    .category-btn:last-child {
+        grid-column:auto;
+    }
+
+    #notesContainer,
+    #notesContainer.table-view,
+    #notesContainer.calendar-view {
+        top:72px;
+    }
+}
+
