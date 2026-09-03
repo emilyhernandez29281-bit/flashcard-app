@@ -12,7 +12,7 @@
         <link rel="manifest" href="manifest.json">
         <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
         <link rel="apple-touch-icon" href="icons/icon-180.png">
-        <link rel="stylesheet" href="style.css?v=6">  
+        <link rel="stylesheet" href="style.css?v=9">  
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -91,6 +91,9 @@
                 <div id="userInputscreen" class="hidden2">
                 <button id="cardSettingsButton" class="card-settings-button" type="button" aria-label="Flashcard field settings" aria-expanded="false" aria-controls="cardSettingsPanel">
                     <img src="settingsbutton.png" alt="">
+                </button>
+                <button id="createCardSubmitButton" class="card-submit-button" type="submit" form="cardForm" aria-label="Create flashcard" disabled>
+                    <img src="enterbutton.png" alt="">
                 </button>
                 <div id="cardSettingsPanel" class="card-settings-panel" hidden>
                     <h3>Card Settings</h3>
@@ -179,7 +182,7 @@
 
 </div>
             <script src="storage.js"></script>
-            <script src="script.js"></script>
+            <script src="script.js?v=10"></script>
             <script>
                 if ("serviceWorker" in navigator) {
                     window.addEventListener("load", () => {

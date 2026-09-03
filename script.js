@@ -29,6 +29,7 @@ const categoryButtons = document.querySelectorAll(".category-btn");
 const categoryButtonsContainer = document.querySelector(".category-buttons");
 const cardPronunciationInput = document.getElementById("cardPronunciation");
 const cardSettingsButton = document.getElementById("cardSettingsButton");
+const createCardSubmitButton = document.getElementById("createCardSubmitButton");
 const cardSettingsPanel = document.getElementById("cardSettingsPanel");
 const showPronunciationSetting = document.getElementById("showPronunciationSetting");
 const showCategorySetting = document.getElementById("showCategorySetting");
@@ -494,6 +495,26 @@ document.addEventListener("keydown", (event) => {
 
 applyCardFieldSettings();
 
+function parseWordAndDefinition(value) {
+    const rawValue = value.trim();
+    const separatorIndex = rawValue.indexOf("=");
+
+    if (separatorIndex < 1) return null;
+
+    const word = rawValue.slice(0, separatorIndex).trim();
+    const definition = rawValue.slice(separatorIndex + 1).trim();
+
+    return word && definition ? { word, definition } : null;
+}
+
+function updateCreateCardSubmitState() {
+    const canCreateCard = Boolean(parseWordAndDefinition(cardTextInput.value));
+    createCardSubmitButton.disabled = !canCreateCard;
+    createCardSubmitButton.setAttribute("aria-disabled", String(!canCreateCard));
+}
+
+updateCreateCardSubmitState();
+
 cardTextInput.addEventListener("keydown", (event) => {
     if (event.key !== "Enter") return;
 
@@ -521,6 +542,8 @@ cardPronunciationInput.addEventListener("keydown", (event) => {
 
 cardTextInput.addEventListener("input", () => {
     errorMessage.classList.add("error-message-hidden");
+    cardTextInput.setCustomValidity("");
+    updateCreateCardSubmitState();
 });
 
 categoryButtons.forEach((button, index) => {
@@ -553,20 +576,23 @@ cardForm.addEventListener("submit",(e)=>{
     // hide both first
     errorMessage.classList.add("error-message-hidden");
     successMessage.classList.add("success-message-hidden");
-    const rawValue =cardTextInput.value.trim();
-    const parts= rawValue.split("=");
-    const category = showCategoryField ? cardCategory.value : "other";
+    const parsedCardText = parseWordAndDefinition(cardTextInput.value);
+    const category = showCategoryField && cardCategory.value ? cardCategory.value : "other";
     const pronunciation = showPronunciationField ? cardPronunciationInput.value.trim() : "";
 
-if (showCategoryField && !category) {
-    alert("Please choose a category before creating the card.");
-    return;
-}
-    const [word, definition]=parts.map(p=>p.trim());
+    if (!parsedCardText) {
+        cardTextInput.setCustomValidity("Enter a word and definition separated by =.");
+        cardTextInput.reportValidity();
+        updateCreateCardSubmitState();
+        return;
+    }
+
+    const { word, definition } = parsedCardText;
     const exists=cards.some(card=>
+        !card.hidden &&
         card.language===currentLanguage && 
         card.set === currentSet &&
-        card.word.toLowerCase()===word.toLowerCase()
+        String(card.word || "").trim().toLowerCase()===word.toLowerCase()
     );
 if(exists){
     // hide success message
@@ -584,8 +610,9 @@ if(exists){
     cards.unshift(newCard);
     saveCards();
     cardTextInput.value = "";
-cardPronunciationInput.value = "";
-cardCategory.value = "";
+    cardPronunciationInput.value = "";
+    cardCategory.value = "";
+    updateCreateCardSubmitState();
 
 categoryButtons.forEach((button) => {
     button.classList.remove("selected-category");
@@ -798,8 +825,8 @@ addSetBtn.addEventListener("click", () => {
     // create placeholder card
     cards.push({
         id: crypto.randomUUID(),
-        word: "word",
-        definition: "definition",
+        word: "_placeholder_",
+        definition: "__placeholder__",
         category: "all",
         language: currentLanguage,
         set: setName,
