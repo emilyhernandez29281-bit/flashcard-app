@@ -1,4 +1,4 @@
-const CACHE_NAME = "flashcards-v1";
+const CACHE_NAME = "flashcards-v3";
 const APP_SHELL = [
     "./",
     "./index.html",
@@ -56,7 +56,6 @@ const APP_SHELL = [
     "./settingsbutton.png",
     "./spoon.png",
     "./tomato.PNG",
-    "./tomatocan.png",
     "./tomatocard.png",
     "./xmark.png"
 ];

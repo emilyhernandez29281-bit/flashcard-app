@@ -526,31 +526,6 @@ background:transparent;
       background: transparent;
 }
 
-.tomato-can{
-    display:none;
-}
-
-#tomatcan{
-    position:absolute;
-    top:65px;
-    left:-10%;
-    padding:0;
-    border:none;
-    z-index:30;
-    background:none;
-
-}
-#tomatcan img{
-    width:100px;
-    height:auto;
-    background:transparent;
-
-}
-#tomatcan:hover{
-  transform: scale(1.10);
-  transition: 0.2s ease;
-}
-
 .error-message-hidden,
 .success-message-hidden {
   visibility: hidden;
@@ -2680,7 +2655,8 @@ text-align:center;
 /* Mobile layout -----------------------------------------------------------
    Desktop keeps all rules above unchanged. These overrides give phones a
    portrait layout, safe-area spacing, larger controls, and scrollable views. */
-@media (max-width: 700px) {
+/* Superseded phone layout kept disabled for reference. */
+@media (max-width: 0px) {
     html {
         min-height:100%;
         background:#F7E4AA;
@@ -3232,18 +3208,6 @@ text-align:center;
         width:min(94vw, 390px);
     }
 
-    #tomatcan {
-        position:fixed;
-        top:auto;
-        right:10px;
-        bottom:max(12px, env(safe-area-inset-bottom));
-        left:auto;
-    }
-
-    #tomatcan img {
-        width:72px;
-    }
-
     #deletePopup {
         position:fixed;
     }
@@ -3254,7 +3218,7 @@ text-align:center;
 }
 
 /* Short landscape phones need a denser vertical arrangement. */
-@media (max-width: 700px) and (max-height: 500px) and (orientation: landscape) {
+@media (max-width: 0px) and (max-height: 0px) and (orientation: landscape) {
     .flashcards {
         min-height:100svh;
     }
@@ -3299,5 +3263,84 @@ text-align:center;
     #notesContainer.calendar-view {
         top:72px;
     }
+}
+
+/* Phone layout ------------------------------------------------------------
+   The reference screens are the original 800 x 500 scene viewed through a
+   narrow portrait viewport. Keeping that coordinate system intact makes the
+   dog, frame, leaf and every coral-panel control line up on every screen. */
+@media (max-width: 700px) {
+    html,
+    body {
+        width:100%;
+        min-height:100%;
+        background:#F7E4AA;
+        overflow:hidden;
+        overscroll-behavior:none;
+        -webkit-text-size-adjust:100%;
+    }
+
+    body {
+        display:block;
+        min-height:100svh;
+    }
+
+    .flashcards {
+        position:absolute;
+        top:50%;
+        left:50%;
+        width:800px;
+        height:500px;
+        min-height:0;
+        overflow:visible;
+        transform:none;
+        translate:-50% -50%;
+        scale:1;
+        transform-origin:center;
+    }
+
+    /* Preserve the desktop scene geometry instead of stretching the board. */
+    #mainBoard {
+        width:900px;
+    }
+
+    #dogphoto {
+        width:500px;
+        height:500px;
+    }
+
+    #dogphoto .dog-head {
+        width:var(--head-width, 330px);
+        left:var(--head-left, 90px);
+        top:var(--head-top, -5px);
+    }
+
+    #dogphoto .dog-legs {
+        width:var(--legs-width, 230px);
+        left:var(--legs-left, 140px);
+        top:var(--legs-top, 419px);
+    }
+
+    body.alt-bg {
+        background-size:900px;
+        background-position:center;
+        background-attachment:scroll;
+    }
+}
+
+/* Scale the complete scene as one unit on narrower phones. */
+@media (max-width: 500px) { .flashcards { scale:.96; } }
+@media (max-width: 480px) { .flashcards { scale:.92; } }
+@media (max-width: 460px) { .flashcards { scale:.88; } }
+@media (max-width: 440px) { .flashcards { scale:.84; } }
+@media (max-width: 420px) { .flashcards { scale:.80; } }
+@media (max-width: 400px) { .flashcards { scale:.76; } }
+@media (max-width: 380px) { .flashcards { scale:.72; } }
+@media (max-width: 360px) { .flashcards { scale:.68; } }
+@media (max-width: 340px) { .flashcards { scale:.64; } }
+
+/* Avoid clipping the scene on unusually short landscape phones. */
+@media (max-width: 700px) and (max-height: 500px) and (orientation: landscape) {
+    .flashcards { scale:.72; }
 }
 

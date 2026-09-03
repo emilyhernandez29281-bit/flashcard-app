@@ -19,7 +19,6 @@ const backbtn4= document.getElementById("backbutton4");
 const backbtn5 = document.getElementById("backbutton5");
 const startpractice = document.getElementById("startpractice");
 const scrollcards =document.getElementById("scrollcards");
-const tomatcan= document.getElementById("tomatcan");
 const masterFilter=document.getElementById("masterFilter");
 const langscreen= document.getElementById("langscreen");
 const langoptions=document.getElementById("langoptions");
@@ -319,7 +318,6 @@ backbtn3.addEventListener("click",()=>{
     notesContainer.classList.add("card-grid-hidden"); 
     document.body.classList.remove("alt-bg");
     backbtn1.classList.remove("back-button1");
-    tomatcan.classList.add("tomato-can");
     showMainBoardDog();
     masterFilter.classList.add("hidden-Filter");
     searchBar.style.display="none";
@@ -334,7 +332,6 @@ collection.addEventListener("click",()=>{
     dogphoto.classList.add("hidden-dog");
     document.body.classList.add("alt-bg");
     backbtn3.classList.remove("back-button3");
-    tomatcan.classList.remove("tomato-can");
     masterFilter.classList.remove("hidden-Filter");
     renderCards(masterFilter.value);
     searchBar.style.display="block";
@@ -343,17 +340,6 @@ collection.addEventListener("click",()=>{
     leafOnRedBoard.classList.add("hidden");
 
 })
-tomatcan.addEventListener("click", () => {
-    //hide main screens
-    notesContainer.classList.add("card-grid-hidden");
-    backbtn3.classList.remove("back-button3"); 
-    options.classList.add("hidden");
-    scrollcards.classList.add("scroll-cards");
-    userInputscreen.classList.add("hidden2");
-    collectionViewToggle.hidden = true;
-
-});
-
 gridViewBtn.addEventListener("click", () => {
     collectionView = "grid";
     gridViewBtn.classList.add("active-view");
