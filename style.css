@@ -3286,16 +3286,16 @@ text-align:center;
     }
 
     .flashcards {
+        --mobile-scene-scale:1;
         position:absolute;
         top:50%;
         left:50%;
         width:800px;
         height:500px;
+        margin:-250px 0 0 -400px;
         min-height:0;
         overflow:visible;
-        transform:none;
-        translate:-50% -50%;
-        scale:1;
+        transform:scale(var(--mobile-scene-scale));
         transform-origin:center;
     }
 
@@ -3329,18 +3329,26 @@ text-align:center;
 }
 
 /* Scale the complete scene as one unit on narrower phones. */
-@media (max-width: 500px) { .flashcards { scale:.96; } }
-@media (max-width: 480px) { .flashcards { scale:.92; } }
-@media (max-width: 460px) { .flashcards { scale:.88; } }
-@media (max-width: 440px) { .flashcards { scale:.84; } }
-@media (max-width: 420px) { .flashcards { scale:.80; } }
-@media (max-width: 400px) { .flashcards { scale:.76; } }
-@media (max-width: 380px) { .flashcards { scale:.72; } }
-@media (max-width: 360px) { .flashcards { scale:.68; } }
-@media (max-width: 340px) { .flashcards { scale:.64; } }
+@media (max-width: 500px) { .flashcards { --mobile-scene-scale:.96; } }
+@media (max-width: 490px) { .flashcards { --mobile-scene-scale:.93; } }
+@media (max-width: 480px) { .flashcards { --mobile-scene-scale:.90; } }
+@media (max-width: 470px) { .flashcards { --mobile-scene-scale:.87; } }
+@media (max-width: 460px) { .flashcards { --mobile-scene-scale:.84; } }
+@media (max-width: 450px) { .flashcards { --mobile-scene-scale:.82; } }
+@media (max-width: 440px) { .flashcards { --mobile-scene-scale:.80; } }
+@media (max-width: 430px) { .flashcards { --mobile-scene-scale:.78; } }
+@media (max-width: 420px) { .flashcards { --mobile-scene-scale:.76; } }
+@media (max-width: 410px) { .flashcards { --mobile-scene-scale:.74; } }
+@media (max-width: 400px) { .flashcards { --mobile-scene-scale:.72; } }
+@media (max-width: 390px) { .flashcards { --mobile-scene-scale:.70; } }
+@media (max-width: 380px) { .flashcards { --mobile-scene-scale:.68; } }
+@media (max-width: 370px) { .flashcards { --mobile-scene-scale:.66; } }
+@media (max-width: 360px) { .flashcards { --mobile-scene-scale:.64; } }
+@media (max-width: 350px) { .flashcards { --mobile-scene-scale:.62; } }
+@media (max-width: 340px) { .flashcards { --mobile-scene-scale:.60; } }
 
 /* Avoid clipping the scene on unusually short landscape phones. */
 @media (max-width: 700px) and (max-height: 500px) and (orientation: landscape) {
-    .flashcards { scale:.72; }
+    .flashcards { --mobile-scene-scale:.72; }
 }
 
