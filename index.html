@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Create, practice, and organize language flashcards.">
+        <title>Flashcards</title>
+        <link rel="stylesheet" href="style.css">  
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    </head>
+        <body>
+            <div id="start" class="flashcards"> 
+                <div id="mainBoard" class="main-board">
+                    <img src="greenbackground.png" id="greenBoard" alt="green board">
+                    <img src="redfullbackground.png" id="redBoard" alt="red overlay">
+                    <div id="goalAchievement" class="goal-achievement" role="dialog" aria-modal="true" aria-labelledby="goalAchievementTitle" hidden>
+                        <div class="goal-achievement-content">
+                            <div class="goal-achievement-left">
+                                <h2 id="goalAchievementTitle">Congrats! You reached your daily goal!</h2>
+                            </div>
+                            <div class="goal-achievement-gif-frame">
+                                <img id="achievementGif" src="achievedit.gif" alt="Daily goal achieved!">
+                            </div>
+                            <div class="goal-achievement-actions">
+                                <button id="returnToOptionsBtn" type="button">Return to options</button>
+                                <button id="keepPracticingBtn" type="button">Keep practicing</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img src="leafonredbackground.png" id="leafOnRedBoard" alt="">
+                <div id="dogphoto" role="img" aria-label="cute dog">
+                    <img id="dogHead" class="dog-head" src="Doghead1.png" alt="">
+                    <img id="dogLegs" class="dog-legs" src="Dogleg1.png" alt="">
+                </div>
+                <button id="startButton">
+                    <img src="hotdog.png" id="hotdog" alt="hotdog">
+                        <span class="start-text">START</span>
+                </button>
+                <div id="langscreen"class="mainscreenlang">
+                    <div id="langoptions"></div>
+                    <button id="backbutton0" class="back-button0">
+                        <img src="backicon.png" id="back0" alt="arrow">
+                    </button>
+                    <div class="lang-bottom-bar">
+                    <button id="addlangbtn">+ Add Language</button>
+                    <button id="deletelangbtn">- Delete Language</button> 
+                    </div>
+                </div>
+                <div id="options" class="hidden">
+                    <button id="backbutton1" class="back-button1" >
+                         <img src="backicon.png" id="back1" alt="arrow">
+                     </button>
+                    <div id="seperateoptions">
+                     <button id="createcard" class="createcardButton" type="button" title="hotdog">
+                        <img src="ketchup.PNG" id="ketchup" alt="hotdog">
+                    </button>
+                     <button id="startpractice" class="StartPractice" type="button">
+                     <img src="tomato.PNG" id="tomato" alt="tomato">
+                    </button>
+                     <button id="collection" class="cardcollector" >
+                     <img src="sandwich.png" id="sandwich" alt="dogbetween2buns">
+                    </button>
+                    <div id="optionlabels">
+                    <h3>Create</h3>
+                    <h3>Practice</h3>
+                    <h3>Collect</h3>
+                    </div>
+                </div>
+            </div>
+            <div id="setsScreen" class="hiddensetsScreen">
+                <div id="setsContainer"></div>
+                 <button id="backbutton5" class="back-button5" >
+                     <img src="backicon.png" id="back5" alt="arrow">
+                </button>
+                <div class="set-bottom-bar">
+                <button id="addSetBtn">+ New Set</button>
+                <button id="deleteSetBtn">- Delete Set</button> 
+                </div>
+            </div>
+    
+                <div id="userInputscreen" class="hidden2">
+                <button id="cardSettingsButton" class="card-settings-button" type="button" aria-label="Flashcard field settings" aria-expanded="false" aria-controls="cardSettingsPanel">
+                    <img src="settingsbutton.png" alt="">
+                </button>
+                <div id="cardSettingsPanel" class="card-settings-panel" hidden>
+                    <h3>Card Settings</h3>
+                    <label>
+                        <input id="showPronunciationSetting" type="checkbox" checked>
+                        Pronunciation
+                    </label>
+                    <label>
+                        <input id="showCategorySetting" type="checkbox" checked>
+                        Category
+                    </label>
+                </div>
+                <form  id="cardForm">
+                    <h2>Create your Flashcards</h2>
+                    <!--<label for="instructions" class="instructiontext"> Create Your FlashCards</label>-->
+                    <input type="text" id = cardText name="word=defintion" placeholder="word=definition">
+                    <input type="text" id="cardPronunciation" name="pronunciation" placeholder="pronunciation">
+                    <input type="hidden" id="cardCategory" value="">
+                    <div class="category-buttons" aria-label="Choose a word category">
+                         <button type="button" class="category-btn" data-category="noun">Noun</button>
+                          <button type="button" class="category-btn" data-category="verb">Verb</button>
+                           <button type="button" class="category-btn" data-category="adjective">Adjective</button>
+                           <button type="button" class="category-btn" data-category="adverb">Adverb</button>
+                           <button type="button" class="category-btn" data-category="other">Other</button>
+                        </div>
+                    <div class="form-message-area" aria-live="polite">
+                        <p id="successMessage" class="success-message-hidden">
+                            Card has been created!
+                        </p>
+                        <p id="errorMessage" class="error-message-hidden">
+                            This word already exists!
+                        </p>
+                    </div>
+                </form>
+             </div>  
+                <button id="backbutton2" class="back-button2" type="button">
+                    <img src="backicon.png" id="back2" alt="Back">
+                </button>
+             <div id="ketchupMeterContainer" class="hidden-meter">
+                <div id="tomatoMeter">
+                    <div id="tomatoFill"></div>
+                 
+                 <span id="tomatoText">0 / 10</span>
+                 </div>
+                </div>
+             
+            <button id="tomatcan" class="tomato-can">
+                <img src="tomatocan.png" id="trashcan" alt="tincan">
+            </button>
+              <button id="backbutton4" class="back-button4">
+                    <img src="backicon.png" id="back4" alt="arrow">
+            </button>
+            <div class="dashbar" id="dash-bar">
+            <button id="backbutton3" class="back-button3">
+                  <img src="backicon.png" id="back3" alt="arrow">
+            </button>
+                 <input type="text" id="searchBar" placeholder="Search..." class="search-bar"/>
+                 <select id="masterFilter" class="hidden-Filter">
+                    <option value="all">all</option>
+                    <option value="noun">noun</option>
+                    <option value="verb">verb</option>
+                    <option value="adjective">adjective</option>
+                    <option value="adverb">adverb</option>
+                    <option value="other">other</option>
+                    <option value="mastered">mastered</option>
+                </select>
+                <div id="collectionViewToggle" class="collection-view-toggle" hidden>
+                    <button id="gridViewBtn" class="view-toggle-btn active-view" type="button">Grid</button>
+                    <button id="tableViewBtn" class="view-toggle-btn" type="button">Table</button>
+                    <button id="calendarViewBtn" class="view-toggle-btn" type="button">Calendar</button>
+                </div>
+             </div>
+            <div id="scrollcards" class="scroll-cards">Learn</div> 
+            <div id="notesContainer" class="card-grid-hidden"> </div>
+            <div id="deletePopup" class="popup-hidden">
+                <div class="popup-card">
+                    <h2>are you sure you want to delete?</h2>
+                    <div class="popup-buttons">
+                    <button id="confirmDeleteBtn" type="button">
+                        <img src="checkmarkbtn.png" id="checkmarkbutton" alt="checkmarkcircle">
+                     </button>
+                     <button id="cancelDeleteBtn" type="button">
+                        <img src="xmark.png" id="xbutton" alt="xcircle">
+                     </button>
+                     </div> 
+        </div>
+    </div>
+
+
+</div>
+            <script src="storage.js"></script>
+            <script src="script.js"></script>
+
+        </body>
+      
+</html>
