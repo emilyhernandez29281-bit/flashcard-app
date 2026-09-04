@@ -3405,6 +3405,26 @@ text-align:center;
         right:auto;
         bottom:calc(100% + 8px);
         left:0;
+        z-index:10;
+    }
+
+    /* Let the popup rise above the leaf without changing its coordinates.
+       The equivalent negative margin replaces the parent's translate so it
+       no longer traps the popup inside a lower stacking context. */
+    #userInputscreen {
+        margin-left:-19%;
+        z-index:auto;
+        transform:none;
+    }
+
+    #cardForm {
+        position:relative;
+        z-index:6;
+    }
+
+    .card-settings-button,
+    .card-submit-button {
+        z-index:9;
     }
 
     /* Match the language/set back buttons to the options-page back button. */
@@ -3714,6 +3734,164 @@ text-align:center;
         box-sizing:border-box;
         min-width:0;
         margin:2px;
+        padding:3px 4px;
+        font-size:11px;
+    }
+}
+
+/* Keep the collection toolbar stationary on phones and iPads. The page is
+   locked to the viewport; only the collection content itself can scroll. */
+@media (max-width: 1366px) {
+    body.alt-bg {
+        position:fixed;
+        inset:0;
+        box-sizing:border-box;
+        width:100%;
+        height:100svh;
+        min-height:100svh;
+        overflow:hidden;
+        overscroll-behavior:none;
+    }
+
+    body.alt-bg #dash-bar {
+        position:fixed;
+        z-index:100;
+    }
+
+    body.alt-bg #notesContainer {
+        overscroll-behavior:contain;
+        -webkit-overflow-scrolling:touch;
+    }
+
+    body.alt-bg .collection-table-wrap {
+        overscroll-behavior:contain;
+        -webkit-overflow-scrolling:touch;
+    }
+}
+
+/* Shared phone/iPad language and set layout -------------------------------
+   These coordinates follow the 800 x 500 illustrated scene, so rotating the
+   device cannot move the controls away from the coral panel. */
+@media (max-width: 700px),
+       (min-width: 701px) and (max-width: 1366px) and (hover: none),
+       (min-width: 701px) and (max-width: 1366px) and (pointer: coarse) {
+    #langscreen,
+    #setsScreen {
+        position:absolute;
+        top:35%;
+        left:50%;
+        box-sizing:border-box;
+        width:342px;
+        height:193px;
+        min-height:0;
+        max-height:none;
+        margin:0;
+        padding:0;
+        transform:translateX(-50%);
+        align-items:stretch;
+    }
+
+    #langoptions,
+    #setsContainer {
+        position:absolute;
+        top:38px;
+        left:24px;
+        box-sizing:border-box;
+        display:grid;
+        grid-template-columns:repeat(3, 90px);
+        width:294px;
+        height:115px;
+        min-height:0;
+        max-height:115px;
+        padding:0;
+        gap:8px;
+        overflow-x:hidden;
+        overflow-y:auto;
+    }
+
+    #langoptions {
+        grid-auto-rows:115px;
+        flex:none;
+    }
+
+    #setsContainer {
+        grid-auto-rows:60px;
+        flex:none;
+    }
+
+    .lang-btn,
+    .set-btn {
+        box-sizing:border-box;
+        width:90px;
+        min-width:90px;
+        max-width:90px;
+        margin:0;
+    }
+
+    .lang-btn {
+        height:115px;
+        min-height:115px;
+    }
+
+    .set-btn {
+        height:60px;
+        min-height:60px;
+    }
+
+    #backbutton0,
+    #backbutton5 {
+        position:absolute;
+        top:-10px;
+        right:auto;
+        left:-29px;
+        display:block;
+        width:auto;
+        height:auto;
+        padding:0;
+        border:0;
+        background:transparent;
+    }
+
+    #backbutton0 img,
+    #backbutton5 img {
+        width:48px;
+        height:auto;
+    }
+
+    .lang-bottom-bar,
+    .set-bottom-bar {
+        position:absolute;
+        right:4px;
+        bottom:0;
+        left:4px;
+        display:flex;
+        width:auto;
+        height:28px;
+        margin:0;
+        align-items:center;
+        justify-content:space-between;
+        gap:0;
+    }
+
+    #addlangbtn,
+    #addSetBtn {
+        width:118px;
+    }
+
+    #deletelangbtn,
+    #deleteSetBtn {
+        width:134px;
+    }
+
+    #deletelangbtn,
+    #addlangbtn,
+    #addSetBtn,
+    #deleteSetBtn {
+        flex:none;
+        box-sizing:border-box;
+        min-width:0;
+        height:28px;
+        margin:0;
         padding:3px 4px;
         font-size:11px;
     }
