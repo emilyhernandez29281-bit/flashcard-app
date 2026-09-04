@@ -3855,7 +3855,7 @@ text-align:center;
     #setsContainer {
         grid-auto-rows:115px;
         flex:none;
-        bottom:16px;
+        bottom:22px;
     }
 
     .lang-btn,
@@ -3915,6 +3915,7 @@ text-align:center;
 
     .set-bottom-bar {
         top:calc(100% - 12px);
+        align-items:flex-start;
     }
 
     #addlangbtn,
@@ -3939,13 +3940,28 @@ text-align:center;
         padding:3px 4px;
         font-size:11px;
     }
+
+    #addSetBtn {
+        width:100px;
+    }
+
+    #deleteSetBtn {
+        width:115px;
+    }
+
+    #addSetBtn,
+    #deleteSetBtn {
+        height:24px;
+        padding:2px 3px;
+        font-size:10px;
+    }
 }
 
 /* Raise the collection toolbar into the dotted strip on iPads. */
 @media (min-width: 701px) and (max-width: 1366px) and (hover: none),
        (min-width: 701px) and (max-width: 1366px) and (pointer: coarse) {
     body.alt-bg #dash-bar {
-        top:max(8px, calc(50svh - 295px));
+        top:max(8px, calc(50svh - 290px));
     }
 }
 
