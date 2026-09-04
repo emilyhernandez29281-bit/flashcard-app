@@ -3571,6 +3571,7 @@ text-align:center;
         left:50%;
         box-sizing:border-box;
         width:calc(100vw - 8px);
+        max-width:none;
         height:auto;
         max-height:none;
         margin:0;
@@ -3677,10 +3678,11 @@ text-align:center;
     }
 
     body.alt-bg .collection-calendar-art {
-        width:min(calc(100% - 24px), 340px);
+        width:min(calc(100% - 24px), 360px);
         max-width:100%;
         margin-right:auto;
         margin-left:auto;
+        transform:translateY(-24px);
     }
 }
 
@@ -3776,6 +3778,19 @@ text-align:center;
     }
 }
 
+/* Keep every grid tomato at the artwork's intended compact dimensions. */
+#notesContainer:not(.table-view):not(.calendar-view) {
+    grid-template-columns:repeat(auto-fit, 170px);
+    justify-content:center;
+}
+
+#notesContainer .note-card-details {
+    width:170px;
+    min-width:170px;
+    min-height:170px;
+    justify-self:center;
+}
+
 /* Keep the collection toolbar stationary on phones and iPads. The page is
    locked to the viewport; only the collection content itself can scroll. */
 @media (max-width: 1366px) {
@@ -3855,7 +3870,7 @@ text-align:center;
     #setsContainer {
         grid-auto-rows:115px;
         flex:none;
-        bottom:22px;
+        bottom:28px;
     }
 
     .lang-btn,
@@ -3942,18 +3957,36 @@ text-align:center;
     }
 
     #addSetBtn {
-        width:100px;
+        width:92px;
     }
 
     #deleteSetBtn {
-        width:115px;
+        width:107px;
     }
 
     #addSetBtn,
     #deleteSetBtn {
-        height:24px;
+        height:22px;
         padding:2px 3px;
-        font-size:10px;
+        font-size:9px;
+    }
+
+    #langoptions .no-languages-message {
+        position:absolute;
+        top:19px;
+        left:50%;
+        width:100%;
+        margin:0;
+        transform:translate(-50%, -50%);
+    }
+
+    #setsContainer .no-sets-message {
+        top:47px;
+        left:50%;
+        width:100%;
+        margin:0;
+        transform:translate(-50%, -50%);
+        animation:none;
     }
 }
 
