@@ -4038,6 +4038,7 @@ text-align:center;
     body.alt-bg .collection-calendar-months {
         justify-content:center;
         gap:18px;
+        transform:translateY(-44px);
     }
 
     body.alt-bg .collection-calendar-title {
@@ -4051,40 +4052,42 @@ text-align:center;
     }
 
     body.alt-bg #notesContainer:not(.table-view):not(.calendar-view) {
-        grid-template-columns:repeat(auto-fit, 150px);
+        grid-template-columns:repeat(auto-fit, 140px);
         align-content:safe center;
         justify-content:center;
-        gap:12px;
+        column-gap:12px;
+        row-gap:8px;
     }
 
     body.alt-bg #notesContainer .note-card-details {
-        width:150px;
-        min-width:150px;
-        min-height:150px;
+        width:140px;
+        min-width:140px;
+        height:140px;
+        min-height:140px;
     }
 
     body.alt-bg #notesContainer .note-card-text {
-        top:52px;
-        width:95px;
-        height:55px;
+        top:48px;
+        width:90px;
+        height:51px;
     }
 
     body.alt-bg #notesContainer .master-toggle-btn {
-        top:10px;
-        right:10px;
+        top:9px;
+        right:9px;
     }
 
     body.alt-bg #notesContainer .master-toggle-btn img {
-        width:22px;
+        width:21px;
     }
 
     body.alt-bg #notesContainer .delete-btn img {
-        width:60px;
+        width:56px;
     }
 
     body.alt-bg #notesContainer .filter-select {
-        max-width:120px;
-        font-size:11px;
+        max-width:110px;
+        font-size:10px;
     }
 
     body.alt-bg #notesContainer .no-matching-cards {
