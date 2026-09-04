@@ -4052,8 +4052,12 @@ text-align:center;
     }
 
     body.alt-bg #notesContainer:not(.table-view):not(.calendar-view) {
+        top:calc(50svh - 134px);
+        bottom:auto;
+        height:284px;
+        padding:4px;
         grid-template-columns:repeat(auto-fit, 135px);
-        align-content:safe center;
+        align-content:start;
         justify-content:center;
         column-gap:12px;
         row-gap:6px;
@@ -4091,6 +4095,7 @@ text-align:center;
     }
 
     body.alt-bg #notesContainer .no-matching-cards {
+        top:50%;
         left:50%;
         box-sizing:border-box;
         width:calc(100vw - 24px);
@@ -4104,25 +4109,53 @@ text-align:center;
 
 /* Use more of the gingham width when a phone is held horizontally. */
 @media (orientation: landscape) and (max-height: 600px) and (max-width: 950px) {
+    body.alt-bg .flashcards {
+        position:fixed;
+        inset:0;
+        width:100%;
+        height:100svh;
+        min-height:0;
+        margin:0;
+        overflow:hidden;
+        transform:none;
+    }
+
     body.alt-bg #notesContainer,
     body.alt-bg #notesContainer.table-view {
-        right:0;
-        left:0;
-        width:min(760px, calc(100vw - 20px));
+        position:fixed;
+        top:72px;
+        right:max(10px, env(safe-area-inset-right));
+        bottom:max(10px, env(safe-area-inset-bottom));
+        left:max(56px, env(safe-area-inset-left));
+        box-sizing:border-box;
+        width:auto;
+        height:auto;
         max-width:none;
-        margin-right:auto;
-        margin-left:auto;
-        transform:translateY(20px);
+        max-height:none;
+        margin:0;
+        transform:none;
     }
 
     body.alt-bg #notesContainer:not(.table-view):not(.calendar-view) {
         grid-template-columns:repeat(auto-fit, 170px);
         justify-content:center;
+        overflow-x:hidden;
+        overflow-y:auto;
+    }
+
+    body.alt-bg #notesContainer.table-view {
+        display:flex;
+        flex-direction:column;
+        overflow:hidden;
     }
 
     body.alt-bg .collection-table-wrap {
+        flex:1 1 auto;
         width:100%;
         max-width:100%;
+        height:auto;
+        min-height:0;
+        max-height:none;
     }
 
     body.alt-bg .collection-table {
