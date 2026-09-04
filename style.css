@@ -4029,7 +4029,73 @@ text-align:center;
 @media (min-width: 701px) and (max-width: 1366px) and (hover: none),
        (min-width: 701px) and (max-width: 1366px) and (pointer: coarse) {
     body.alt-bg #dash-bar {
-        top:max(8px, calc(50svh - 280px));
+        top:max(8px, calc(50svh - 275px));
+    }
+}
+
+/* Compact and center grid tomatoes inside the portrait-phone gingham area. */
+@media (max-width: 700px) and (orientation: portrait) {
+    body.alt-bg .collection-calendar-months {
+        justify-content:center;
+        gap:18px;
+    }
+
+    body.alt-bg .collection-calendar-title {
+        flex:0 0 auto;
+        margin:0;
+    }
+
+    body.alt-bg .collection-month-grid {
+        flex:0 0 auto;
+        align-content:start;
+    }
+
+    body.alt-bg #notesContainer:not(.table-view):not(.calendar-view) {
+        grid-template-columns:repeat(auto-fit, 150px);
+        align-content:safe center;
+        justify-content:center;
+        gap:12px;
+    }
+
+    body.alt-bg #notesContainer .note-card-details {
+        width:150px;
+        min-width:150px;
+        min-height:150px;
+    }
+
+    body.alt-bg #notesContainer .note-card-text {
+        top:52px;
+        width:95px;
+        height:55px;
+    }
+
+    body.alt-bg #notesContainer .master-toggle-btn {
+        top:10px;
+        right:10px;
+    }
+
+    body.alt-bg #notesContainer .master-toggle-btn img {
+        width:22px;
+    }
+
+    body.alt-bg #notesContainer .delete-btn img {
+        width:60px;
+    }
+
+    body.alt-bg #notesContainer .filter-select {
+        max-width:120px;
+        font-size:11px;
+    }
+
+    body.alt-bg #notesContainer .no-matching-cards {
+        left:50%;
+        box-sizing:border-box;
+        width:calc(100vw - 24px);
+        max-width:none;
+        font-size:14px;
+        line-height:1.2;
+        white-space:nowrap;
+        transform:translate(-50%, -50%);
     }
 }
 
