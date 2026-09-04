@@ -4052,24 +4052,24 @@ text-align:center;
     }
 
     body.alt-bg #notesContainer:not(.table-view):not(.calendar-view) {
-        grid-template-columns:repeat(auto-fit, 140px);
+        grid-template-columns:repeat(auto-fit, 135px);
         align-content:safe center;
         justify-content:center;
         column-gap:12px;
-        row-gap:8px;
+        row-gap:6px;
     }
 
     body.alt-bg #notesContainer .note-card-details {
-        width:140px;
-        min-width:140px;
-        height:140px;
-        min-height:140px;
+        width:135px;
+        min-width:135px;
+        height:135px;
+        min-height:135px;
     }
 
     body.alt-bg #notesContainer .note-card-text {
-        top:48px;
-        width:90px;
-        height:51px;
+        top:46px;
+        width:87px;
+        height:49px;
     }
 
     body.alt-bg #notesContainer .master-toggle-btn {
@@ -4078,15 +4078,15 @@ text-align:center;
     }
 
     body.alt-bg #notesContainer .master-toggle-btn img {
-        width:21px;
+        width:20px;
     }
 
     body.alt-bg #notesContainer .delete-btn img {
-        width:56px;
+        width:54px;
     }
 
     body.alt-bg #notesContainer .filter-select {
-        max-width:110px;
+        max-width:105px;
         font-size:10px;
     }
 
@@ -4099,6 +4099,35 @@ text-align:center;
         line-height:1.2;
         white-space:nowrap;
         transform:translate(-50%, -50%);
+    }
+}
+
+/* Use more of the gingham width when a phone is held horizontally. */
+@media (orientation: landscape) and (max-height: 600px) and (max-width: 950px) {
+    body.alt-bg #notesContainer,
+    body.alt-bg #notesContainer.table-view {
+        right:0;
+        left:0;
+        width:min(760px, calc(100vw - 20px));
+        max-width:none;
+        margin-right:auto;
+        margin-left:auto;
+        transform:translateY(20px);
+    }
+
+    body.alt-bg #notesContainer:not(.table-view):not(.calendar-view) {
+        grid-template-columns:repeat(auto-fit, 170px);
+        justify-content:center;
+    }
+
+    body.alt-bg .collection-table-wrap {
+        width:100%;
+        max-width:100%;
+    }
+
+    body.alt-bg .collection-table {
+        width:100%;
+        min-width:100%;
     }
 }
 
