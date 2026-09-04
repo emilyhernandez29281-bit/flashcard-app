@@ -3585,7 +3585,14 @@ text-align:center;
     }
 
     body.alt-bg #notesContainer .no-matching-cards {
-        transform:none;
+        position:absolute;
+        top:231px;
+        left:0;
+        width:100%;
+        margin:0;
+        padding:0;
+        transform:translateY(-50%);
+        animation:none;
     }
 
     body.alt-bg .note-card-details {
@@ -3597,6 +3604,7 @@ text-align:center;
     body.alt-bg #notesContainer.table-view {
         display:flex;
         flex-direction:column;
+        bottom:max(0px, calc(50svh - 247px));
         padding:6px 4px 4px;
         overflow:hidden;
     }
