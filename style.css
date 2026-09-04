@@ -3489,7 +3489,7 @@ text-align:center;
 
     body.alt-bg #dash-bar {
         position:fixed;
-        top:max(8px, calc(50svh - 260px));
+        top:max(8px, calc(50svh - 265px));
         right:6px;
         left:6px;
         display:grid;
@@ -3583,6 +3583,12 @@ text-align:center;
         align-content:start;
         gap:18px 8px;
         padding:8px 4px;
+    }
+
+    body.alt-bg #notesContainer:not(.table-view):not(.calendar-view) {
+        bottom:max(8px, calc(50svh - 239px));
+        overflow-x:hidden;
+        overflow-y:auto;
     }
 
     body.alt-bg #notesContainer .no-matching-cards {
@@ -3866,14 +3872,14 @@ text-align:center;
         grid-auto-rows:115px;
         flex:none;
         bottom:28px;
-        left:28px;
+        left:32px;
     }
 
     #setsContainer {
         grid-auto-rows:115px;
         flex:none;
         bottom:28px;
-        left:28px;
+        left:32px;
     }
 
     .lang-btn,
@@ -3980,6 +3986,12 @@ text-align:center;
         width:107px;
     }
 
+    #deletelangbtn,
+    #deleteSetBtn {
+        position:relative;
+        left:4px;
+    }
+
     #addSetBtn,
     #deleteSetBtn {
         height:22px;
@@ -3997,7 +4009,7 @@ text-align:center;
     #langoptions .no-languages-message {
         position:absolute;
         top:47px;
-        left:50%;
+        left:calc(50% - 8px);
         width:100%;
         margin:0;
         transform:translate(-50%, -50%);
@@ -4005,7 +4017,7 @@ text-align:center;
 
     #setsContainer .no-sets-message {
         top:47px;
-        left:50%;
+        left:calc(50% - 8px);
         width:100%;
         margin:0;
         transform:translate(-50%, -50%);
@@ -4017,7 +4029,7 @@ text-align:center;
 @media (min-width: 701px) and (max-width: 1366px) and (hover: none),
        (min-width: 701px) and (max-width: 1366px) and (pointer: coarse) {
     body.alt-bg #dash-bar {
-        top:max(8px, calc(50svh - 285px));
+        top:max(8px, calc(50svh - 280px));
     }
 }
 
