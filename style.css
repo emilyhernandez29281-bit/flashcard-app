@@ -3815,7 +3815,7 @@ text-align:center;
     }
 
     #setsContainer {
-        grid-auto-rows:60px;
+        grid-auto-rows:115px;
         flex:none;
     }
 
@@ -3834,8 +3834,8 @@ text-align:center;
     }
 
     .set-btn {
-        height:60px;
-        min-height:60px;
+        height:115px;
+        min-height:115px;
     }
 
     #backbutton0,
@@ -3861,12 +3861,13 @@ text-align:center;
     .lang-bottom-bar,
     .set-bottom-bar {
         position:absolute;
-        right:4px;
-        bottom:0;
-        left:4px;
+        top:calc(100% - 2px);
+        right:2px;
+        bottom:auto;
+        left:2px;
         display:flex;
         width:auto;
-        height:28px;
+        height:30px;
         margin:0;
         align-items:center;
         justify-content:space-between;
@@ -3875,7 +3876,7 @@ text-align:center;
 
     #addlangbtn,
     #addSetBtn {
-        width:118px;
+        width:117px;
     }
 
     #deletelangbtn,
@@ -3890,7 +3891,7 @@ text-align:center;
         flex:none;
         box-sizing:border-box;
         min-width:0;
-        height:28px;
+        height:30px;
         margin:0;
         padding:3px 4px;
         font-size:11px;
