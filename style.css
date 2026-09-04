@@ -420,6 +420,41 @@ button.cardcollector {
     pointer-events: none;
 }
 
+#dogMoodPreviewButton {
+    position:absolute;
+    top:18px;
+    left:18px;
+    z-index:20;
+    padding:9px 12px;
+    border:3px solid #934948;
+    border-radius:9px;
+    background:#F7E4AA;
+    color:#934948;
+    box-shadow:0 4px 0 #934948;
+    font-family:"Pixelify Sans", sans-serif;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+#dogMoodPreviewButton:hover,
+#dogMoodPreviewButton:focus-visible {
+    background:#F0AA89;
+    transform:translateY(-2px);
+    box-shadow:0 6px 0 #934948;
+}
+
+#dogMoodPreviewButton:active {
+    transform:translateY(3px);
+    box-shadow:0 1px 0 #934948;
+}
+
+#dogMoodPreviewButton:focus-visible {
+    outline:3px solid #FFF1B8;
+    outline-offset:2px;
+}
+
 #backbutton1{
     position:absolute;
     left:25%;
@@ -2741,9 +2776,9 @@ text-align:center;
     }
 
     #dogphoto .dog-head {
-        width:66%;
-        left:18%;
-        top:-1%;
+        width:var(--head-width-mobile, 66%);
+        left:var(--head-left-mobile, 18%);
+        top:var(--head-top-mobile, -1%);
     }
 
     #dogphoto .dog-legs {
@@ -3362,6 +3397,14 @@ text-align:center;
         background-size:900px;
         background-position:center;
         background-attachment:scroll;
+    }
+
+    /* Keep Card Settings inside the narrow phone viewport. */
+    .card-settings-panel {
+        top:auto;
+        right:auto;
+        bottom:calc(100% + 8px);
+        left:0;
     }
 }
 

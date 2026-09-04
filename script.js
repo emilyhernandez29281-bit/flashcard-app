@@ -11,6 +11,7 @@ const notesContainer = document.getElementById("notesContainer");
 const dogphoto = document.getElementById("dogphoto");
 const dogHead = document.getElementById("dogHead");
 const dogLegs = document.getElementById("dogLegs");
+const dogMoodPreviewButton = document.getElementById("dogMoodPreviewButton");
 const backbtn0=document.getElementById("backbutton0");
 const backbtn1=document.getElementById("backbutton1");
 const backbtn2 = document.getElementById("backbutton2");
@@ -44,6 +45,37 @@ const dogFrames = [
     { head: "Doghead6.png", legs: "Dogleg6.png",  headWidth: 330, headLeft: 90, headTop: -15,  legsWidth: 240, legsLeft: 135, legsTop: 416 },
     { head: "Doghead7.png", legs: "Doglegs7.png", headWidth: 360, headLeft: 90, headTop: -84, legsWidth: 260, legsLeft: 130, legsTop: 405 }
 ];
+const upsetDogHeads = [
+    { src: "upsetdog1.png", headWidth: 323.80, headLeft: 91.88, headTop: -8.54 },
+    { src: "upsetdog2.png", headWidth: 322.91, headLeft: 92.31, headTop: -9.82 },
+    { src: "upsetdog3.png", headWidth: 323.21, headLeft: 92.10, headTop: -10.90 },
+    { src: "upsetdog4.png", headWidth: 324.33, headLeft: 91.35, headTop: -11.08 },
+    { src: "upsetdog5.png", headWidth: 326.83, headLeft: 89.70, headTop: -7.60 },
+    { src: "upsetdog6.png", headWidth: 322.91, headLeft: 92.31, headTop: -10.79 },
+    { src: "upsetdog7.png", headWidth: 325.92, headLeft: 91.77, headTop: -10.05 },
+    { src: "upsetdog8.png", headWidth: 324.10, headLeft: 91.45, headTop: -9.95 }
+];
+const LAST_VISIT_KEY = "lastVisit";
+const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
+
+function getDaysAway() {
+    try {
+        const lastVisit = Number(localStorage.getItem(LAST_VISIT_KEY));
+        const now = Date.now();
+        const daysAway = Number.isFinite(lastVisit) && lastVisit > 0
+            ? Math.max(0, Math.floor((now - lastVisit) / MILLISECONDS_PER_DAY))
+            : 0;
+
+        // Save this visit only after using the previous one to choose the mood.
+        localStorage.setItem(LAST_VISIT_KEY, String(now));
+        return daysAway;
+    } catch (error) {
+        console.warn("The dog's away-time mood could not be saved.", error);
+        return 0;
+    }
+}
+
+const daysAway = getDaysAway();
 const errorMessage = document.getElementById("errorMessage");
 const deletedContainer = document.getElementById("deletedContainer");
 const searchBar = document.getElementById("searchBar");
@@ -69,6 +101,9 @@ const returnToOptionsBtn = document.getElementById("returnToOptionsBtn");
 const keepPracticingBtn = document.getElementById("keepPracticingBtn");
 
 let currentDogIndex=0;
+let inactivityDogMoodDay = daysAway;
+let previewDogDay = Math.min(inactivityDogMoodDay, upsetDogHeads.length);
+let inactivityDogMoodActive = inactivityDogMoodDay > 0;
 let currentLanguage=null;
 let currentSet = null;
 let collectionView = "grid";
@@ -117,6 +152,9 @@ tomatoText.addEventListener("click", () => {
 });
 
 function updateDog(){
+    inactivityDogMoodActive = false;
+    inactivityDogMoodDay = 0;
+    previewDogDay = 0;
      dogphoto.classList.add("dog-fade");
     setTimeout(()=>{
 
@@ -127,6 +165,9 @@ function updateDog(){
     
 }
 function subtractDog(){
+    inactivityDogMoodActive = false;
+    inactivityDogMoodDay = 0;
+    previewDogDay = 0;
      dogphoto.classList.add("dog-fade");
     setTimeout(()=>{
 
@@ -141,20 +182,71 @@ function setDogFrame(index){
     const frame = dogFrames[index];
     dogHead.src = frame.head;
     dogLegs.src = frame.legs;
+    dogphoto.setAttribute("aria-label", "Your happy study dog");
 
     dogphoto.style.setProperty("--head-width", `${frame.headWidth}px`);
     dogphoto.style.setProperty("--head-left", `${frame.headLeft}px`);
     dogphoto.style.setProperty("--head-top", `${frame.headTop}px`);
+    dogphoto.style.setProperty("--head-width-mobile", "66%");
+    dogphoto.style.setProperty("--head-left-mobile", "18%");
+    dogphoto.style.setProperty("--head-top-mobile", "-1%");
     dogphoto.style.setProperty("--legs-width", `${frame.legsWidth}px`);
     dogphoto.style.setProperty("--legs-left", `${frame.legsLeft}px`);
     dogphoto.style.setProperty("--legs-top", `${frame.legsTop}px`);
 }
 
-function showMainBoardDog(){
+function setDogMood(dayCount) {
     currentDogIndex = 0;
     setDogFrame(currentDogIndex);
+    const safeDayCount = Math.max(0, Math.floor(Number(dayCount) || 0));
+    const upsetDogIndex = Math.min(safeDayCount, upsetDogHeads.length) - 1;
+
+    if (upsetDogIndex >= 0) {
+        const upsetDog = upsetDogHeads[upsetDogIndex];
+        dogHead.src = upsetDog.src;
+        dogphoto.style.setProperty("--head-width", `${upsetDog.headWidth}px`);
+        dogphoto.style.setProperty("--head-left", `${upsetDog.headLeft}px`);
+        dogphoto.style.setProperty("--head-top", `${upsetDog.headTop}px`);
+        dogphoto.style.setProperty("--head-width-mobile", `${upsetDog.headWidth / 5}%`);
+        dogphoto.style.setProperty("--head-left-mobile", `${upsetDog.headLeft / 5}%`);
+        dogphoto.style.setProperty("--head-top-mobile", `${upsetDog.headTop / 5}%`);
+        dogphoto.setAttribute(
+            "aria-label",
+            `Your dog after ${safeDayCount} ${safeDayCount === 1 ? "day" : "days"} away`
+        );
+    } else {
+        dogphoto.setAttribute("aria-label", "Your happy study dog");
+    }
+}
+
+function updateDogMoodPreviewLabel() {
+    dogMoodPreviewButton.textContent = `Preview day ${previewDogDay} of 8`;
+    const nextDay = (previewDogDay + 1) % (upsetDogHeads.length + 1);
+    dogMoodPreviewButton.setAttribute(
+        "aria-label",
+        `Currently previewing day ${previewDogDay}. Show day ${nextDay}.`
+    );
+}
+
+function showMainBoardDog(){
+    setDogMood(inactivityDogMoodActive ? inactivityDogMoodDay : 0);
     dogphoto.classList.remove("hidden-dog");
 }
+showMainBoardDog();
+updateDogMoodPreviewLabel();
+
+dogMoodPreviewButton.addEventListener("click", () => {
+    previewDogDay = (previewDogDay + 1) % (upsetDogHeads.length + 1);
+    inactivityDogMoodDay = previewDogDay;
+    inactivityDogMoodActive = previewDogDay > 0;
+    dogphoto.classList.add("dog-fade");
+
+    setTimeout(() => {
+        setDogMood(previewDogDay);
+        dogphoto.classList.remove("dog-fade");
+        updateDogMoodPreviewLabel();
+    }, 150);
+});
 let cards=loadedData.cards;
 let languages=loadedData.languages;
 
@@ -258,6 +350,7 @@ if (window.flashcardStorage.needsFolderConnection()) {
     }
 }
 startButton.hidden = true;
+dogMoodPreviewButton.hidden = true;
 langscreen.classList.remove("mainscreenlang");
 renderlanguagebtns();
 backbtn1.classList.remove("back-button1");
@@ -275,6 +368,12 @@ backbtn1.classList.add("back-button1");
 backbtn0.addEventListener("click",()=>{
     langscreen.classList.add("mainscreenlang");
     startButton.hidden=false;
+    dogMoodPreviewButton.hidden=false;
+    previewDogDay = inactivityDogMoodActive
+        ? Math.min(inactivityDogMoodDay, upsetDogHeads.length)
+        : 0;
+    showMainBoardDog();
+    updateDogMoodPreviewLabel();
     setsScreen.classList.add("hiddensetsScreen");
 })
 
@@ -393,7 +492,7 @@ startpractice.addEventListener("click",()=>{
     backbtn4.classList.remove("back-button4");
     ketchupMeterContainer.classList.remove("hidden-meter");
     currentDogIndex=0;
-    setDogFrame(currentDogIndex);
+    setDogMood(inactivityDogMoodActive ? inactivityDogMoodDay : 0);
     const languagecards = cards.filter(c => c.language === currentLanguage);
     const reviewCards = languagecards.filter(c => c.status === "mastered");
     const newCards = languagecards.filter(c => c.status === "new" || !c.status);
