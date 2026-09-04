@@ -3865,12 +3865,15 @@ text-align:center;
     #langoptions {
         grid-auto-rows:115px;
         flex:none;
+        bottom:28px;
+        left:28px;
     }
 
     #setsContainer {
         grid-auto-rows:115px;
         flex:none;
         bottom:28px;
+        left:28px;
     }
 
     .lang-btn,
@@ -3933,6 +3936,11 @@ text-align:center;
         align-items:flex-start;
     }
 
+    .lang-bottom-bar {
+        top:calc(100% - 12px);
+        align-items:flex-start;
+    }
+
     #addlangbtn,
     #addSetBtn {
         width:117px;
@@ -3960,7 +3968,15 @@ text-align:center;
         width:92px;
     }
 
+    #addlangbtn {
+        width:92px;
+    }
+
     #deleteSetBtn {
+        width:107px;
+    }
+
+    #deletelangbtn {
         width:107px;
     }
 
@@ -3971,9 +3987,16 @@ text-align:center;
         font-size:9px;
     }
 
+    #addlangbtn,
+    #deletelangbtn {
+        height:22px;
+        padding:2px 3px;
+        font-size:9px;
+    }
+
     #langoptions .no-languages-message {
         position:absolute;
-        top:19px;
+        top:47px;
         left:50%;
         width:100%;
         margin:0;
@@ -3994,7 +4017,7 @@ text-align:center;
 @media (min-width: 701px) and (max-width: 1366px) and (hover: none),
        (min-width: 701px) and (max-width: 1366px) and (pointer: coarse) {
     body.alt-bg #dash-bar {
-        top:max(8px, calc(50svh - 290px));
+        top:max(8px, calc(50svh - 285px));
     }
 }
 
