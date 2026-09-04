@@ -3432,3 +3432,178 @@ text-align:center;
     .flashcards { --mobile-scene-scale:.72; }
 }
 
+/* Portrait-phone collection layout ---------------------------------------
+   Collection mode uses the real viewport so its controls and content are
+   not narrowed by the scale used for the illustrated 800px scene. */
+@media (max-width: 700px) and (orientation: portrait) {
+    body.alt-bg .flashcards {
+        position:fixed;
+        inset:0;
+        width:100%;
+        height:100svh;
+        min-height:0;
+        margin:0;
+        overflow:hidden;
+        transform:none;
+    }
+
+    body.alt-bg #dash-bar {
+        position:fixed;
+        top:max(12px, env(safe-area-inset-top));
+        right:10px;
+        left:10px;
+        display:grid;
+        grid-template-columns:minmax(88px, .72fr) minmax(0, 2.28fr);
+        grid-template-rows:42px 40px;
+        width:auto;
+        max-width:none;
+        gap:7px 8px;
+        transform:none;
+    }
+
+    body.alt-bg #backbutton3 {
+        position:static;
+        display:grid;
+        width:48px;
+        height:42px;
+        padding:0;
+        place-items:center;
+        justify-self:start;
+        grid-column:1;
+        grid-row:1;
+    }
+
+    body.alt-bg #backbutton3 img {
+        width:46px;
+    }
+
+    body.alt-bg .search-bar {
+        grid-column:2;
+        grid-row:1;
+        box-sizing:border-box;
+        width:100%;
+        height:42px;
+        min-width:0;
+        padding:6px 14px;
+        font-size:16px;
+    }
+
+    body.alt-bg #masterFilter {
+        grid-column:1;
+        grid-row:2;
+        box-sizing:border-box;
+        width:100%;
+        min-width:0;
+        height:40px;
+        font-size:13px;
+    }
+
+    body.alt-bg .collection-view-toggle {
+        display:grid;
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+        grid-column:2;
+        grid-row:2;
+        min-width:0;
+        gap:5px;
+    }
+
+    body.alt-bg .collection-view-toggle[hidden] {
+        display:none;
+    }
+
+    body.alt-bg .view-toggle-btn {
+        box-sizing:border-box;
+        width:100%;
+        min-width:0;
+        min-height:40px;
+        padding:5px 3px;
+        font-size:12px;
+    }
+
+    body.alt-bg #notesContainer,
+    body.alt-bg #notesContainer.table-view,
+    body.alt-bg #notesContainer.calendar-view {
+        position:fixed;
+        top:calc(max(12px, env(safe-area-inset-top)) + 101px);
+        right:8px;
+        bottom:max(10px, env(safe-area-inset-bottom));
+        left:8px;
+        box-sizing:border-box;
+        width:auto;
+        height:auto;
+        max-height:none;
+        margin:0;
+        transform:none;
+    }
+
+    body.alt-bg #notesContainer {
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        align-content:start;
+        gap:18px 8px;
+        padding:8px 4px;
+    }
+
+    body.alt-bg .note-card-details {
+        width:100%;
+        min-width:0;
+        min-height:170px;
+    }
+
+    body.alt-bg #notesContainer.table-view {
+        display:flex;
+        flex-direction:column;
+        padding:6px 4px 4px;
+        overflow:hidden;
+    }
+
+    body.alt-bg .collection-table-toolbar {
+        position:static;
+        flex:0 0 auto;
+        align-items:flex-start;
+        width:100%;
+        padding:0 2px 7px;
+    }
+
+    body.alt-bg .collection-table-wrap {
+        flex:1 1 auto;
+        width:100%;
+        height:auto;
+        min-height:0;
+        max-height:none;
+    }
+
+    body.alt-bg .collection-table {
+        min-width:560px;
+    }
+
+    body.alt-bg .collection-table.table-optional-columns-1 {
+        min-width:440px;
+    }
+
+    body.alt-bg .collection-table.table-optional-columns-0 {
+        min-width:100%;
+    }
+
+    body.alt-bg #notesContainer.calendar-view {
+        padding:8px 4px;
+        overflow:auto;
+    }
+
+    body.alt-bg .collection-month-grid {
+        grid-template-columns:repeat(4, minmax(0, 72px));
+        gap:14px 10px;
+        width:100%;
+    }
+
+    body.alt-bg .collection-month-btn {
+        width:100%;
+        max-width:72px;
+        aspect-ratio:1;
+        height:auto;
+    }
+
+    body.alt-bg .collection-calendar-art {
+        width:min(92vw, 420px);
+    }
+}
+
