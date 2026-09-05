@@ -4033,7 +4033,7 @@ text-align:center;
     }
 }
 
-/* Compact and center grid tomatoes inside the portrait-phone gingham area. */
+/* Fit three full rows inside the marked portrait-phone gingham area. */
 @media (max-width: 700px) and (orientation: portrait) {
     body.alt-bg .collection-calendar-months {
         justify-content:center;
@@ -4052,11 +4052,13 @@ text-align:center;
     }
 
     body.alt-bg #notesContainer:not(.table-view):not(.calendar-view) {
-        top:calc(50svh - 134px);
+        top:calc(50svh - 205px);
         bottom:auto;
-        height:284px;
+        /* Three 130px cards, two 6px gaps, and 4px padding at each edge. */
+        height:410px;
         padding:4px;
-        grid-template-columns:repeat(auto-fit, 135px);
+        grid-template-columns:repeat(2, 130px);
+        grid-auto-rows:130px;
         align-content:start;
         justify-content:center;
         column-gap:12px;
@@ -4064,10 +4066,10 @@ text-align:center;
     }
 
     body.alt-bg #notesContainer .note-card-details {
-        width:135px;
-        min-width:135px;
-        height:135px;
-        min-height:135px;
+        width:130px;
+        min-width:130px;
+        height:130px;
+        min-height:130px;
     }
 
     body.alt-bg #notesContainer .note-card-text {
